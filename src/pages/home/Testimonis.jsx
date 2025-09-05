@@ -12,7 +12,7 @@ import { Rating } from '@smastrom/react-rating';
 export default function Testimonis() {
     const [reviews, setreviews] = useState([])
     useEffect(() => {
-        fetch('https://bistro-boss-server-tau-puce.vercel.app/reviews')
+        fetch('http://localhost:5000/reviews')
             .then(res => res.json())
             .then(data => setreviews(data))
     }, [])

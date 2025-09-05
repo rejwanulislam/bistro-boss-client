@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosPublick = axios.create({
-  baseURL: 'https://bistro-boss-server-tau-puce.vercel.app'
+  baseURL: 'http://localhost:5000'
 })
 export default function useAxiosPublick() {
   return axiosPublick;

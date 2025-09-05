@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GETWAT_PK);
 
-export default function Payment() {
+export default function StripePayment() {
   return (
     <div>
         <SectionTitle title='Payment' subtitle='Plase pay to eat'></SectionTitle>

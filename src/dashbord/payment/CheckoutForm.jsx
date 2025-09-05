@@ -111,7 +111,7 @@ export default function CheckoutForm() {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret}>
+                <button className="btn btn-neutral bg-green-500" type="submit" disabled={!stripe || !clientSecret}>
                     Pay
                 </button>
                 {

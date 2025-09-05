@@ -3,7 +3,7 @@ import useAuth from './useAuth'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 const axiosSecure = axios.create({
-    baseURL: 'https://bistro-boss-server-tau-puce.vercel.app'
+    baseURL: 'http://localhost:5000'
 })
 export default function useAxiosSecure() {
     const { passwordSignOut, loding } = useAuth()

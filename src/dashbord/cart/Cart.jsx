@@ -1,12 +1,13 @@
-import React from 'react'
 import useCart from '../../hooks/useCart'
 import { FaTrashAlt } from 'react-icons/fa'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function Cart() {
     const [cart, refetch] = useCart()
+    const [isModal, setIsModal] = useState(false)
     const axiosSecure = useAxiosSecure()
     const totalPrice = cart?.reduce((total, item) => total + item.price, 0)
 
@@ -46,14 +47,42 @@ export default function Cart() {
                 <div className='text-4xl'>Items:{cart?.length}</div>
                 <div className='text-4xl'>Total Price:{totalPrice}</div>
                 {
-                    cart?.length ? <Link to='/dashbord/payment'>
-                        <button className='btn btn-primary'>Pay</button>
+                    cart?.length ? <Link>
+                        <button onClick={() => setIsModal(true)} className='btn btn-primary'>Pay</button>
                     </Link> :
                         <button disabled={!cart?.length} className='btn btn-primary'>Pay</button>
                 }
 
-                
+
             </div>
+
+            {
+                isModal && (<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-white rounded-lg shadow-lg w-96 p-6 relative">
+                        <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
+                        <Link to='/dashbord/stripePayment'> <button className='block btn btn-sm bg-green-500 '>Stripe</button></Link>
+                        <Link to='/dashbord/sslcommerzPayment'><button className='block btn btn-sm mt-3 bg-sky-500'>sslcommerz</button></Link>
+
+                        <div className="flex justify-end space-x-3">
+                            <button
+                                onClick={() => setIsModal(false)}
+                                className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+                            >
+                                Cancel
+                            </button>
+                          
+                        </div>
+
+                        {/* Close button (X) */}
+                        <button
+                            onClick={() => setIsModal(false)}
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                        >
+                            
+                        </button>
+                    </div>
+                </div>)
+            }
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">

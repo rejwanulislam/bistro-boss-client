@@ -14,10 +14,11 @@ import AddItem from "../pages/dashbord/AddItem";
 import AdminRoute from "./AdminRoute";
 import ManageItem from "../dashbord/manageItem/ManageItem";
 import UpdateItem from "../dashbord/updateItem/UpdateItem";
-import Payment from "../dashbord/payment/Payment";
 import PaymentHistory from "../dashbord/paymentHistory/PaymentHistory";
 import UserHome from "../dashbord/userHome/UserHome";
 import AdminHome from "../dashbord/adminHome/AdminHome";
+import StripePayment from "../dashbord/payment/StripePayment";
+import SslcommerzPayment from "../dashbord/payment/SslcommerzPayment";
 
 const router= createBrowserRouter([
     {
@@ -64,8 +65,12 @@ const router= createBrowserRouter([
          element:<Cart></Cart>
         },
         {
-         path:"/dashbord/payment",
-         element:<Payment></Payment>
+         path:"/dashbord/stripePayment",
+         element:<StripePayment></StripePayment>
+        },
+        {
+         path:"/dashbord/sslcommerzPayment",
+         element:<SslcommerzPayment></SslcommerzPayment>
         },
         {
          path:"/dashbord/paymentHistory",
@@ -92,7 +97,7 @@ const router= createBrowserRouter([
         {
          path:"/dashbord/update/:id",
          element:<UpdateItem></UpdateItem>,
-         loader:({params})=>fetch(`https://bistro-boss-server-tau-puce.vercel.app/menu/${params.id}`)
+         loader:({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
         },
       ]
 
